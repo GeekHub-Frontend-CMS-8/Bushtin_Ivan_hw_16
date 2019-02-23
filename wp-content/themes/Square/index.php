@@ -40,16 +40,22 @@
         </div>
         <div class="bottom-box-2">
             <h4 class="bottom-box-2-header">news</h4>
-            <div class="bottom-box-2-news">
-                <img src="<?php bloginfo('template_url') ?>/img/news-box-photo-1.png" alt="photo">
-                <div class="bottom-box-2-news-text">
-                    <h6>new gallery set</h6>
-                    <span>09.12.2014</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla mi orci, ac venenatis
-                        ante
-                        venenatis eget.</p>
+
+            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+                <div class="bottom-box-2-news">
+                    <?php the_post_thumbnail('full'); ?>
+                    <div class="bottom-box-2-news-text">
+                        <h6><?php the_title(); ?></h6>
+                        <span><?php the_date('d.m.Y') ?></span>
+                        <p><?php the_content(); ?></p>
+                    </div>
                 </div>
-            </div>
+
+            <?php endwhile; ?>
+            <?php else: ?>
+            <?php endif; ?>
+
             <div class="bottom-box-2-news news-margin">
                 <img src="<?php bloginfo('template_url') ?>/img/news-box-photo-2.png" alt="photo">
                 <div class="bottom-box-2-news-text">
